@@ -6,7 +6,7 @@
     "test": "cross-env BABEL_ENV=test jest --passWithNoTests",
     "format": "prettier --write .",
     "check-format": "prettier --check .",
-    "prepare": "husky install",
+    "prepare": "husky",
     "build": "concurrently yarn:build:*",
     "build:webpack": "webpack --mode=production",
     "build:types": "tsc"
@@ -23,7 +23,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.1",
     "html-webpack-plugin": "^5.3.2",
-    "husky": "^7.0.2",
+    "husky": "^9.1.7",
     "jest": "^27.5.1",
     "jest-cli": "^27.5.1",
     "prettier": "^2.3.2",

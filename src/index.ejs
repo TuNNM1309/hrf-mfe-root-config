@@ -29,7 +29,7 @@
     {
       "imports": {
         "@hr-forte/root-config": "//localhost:9000/hr-forte-root-config.js",
-        "@hr-forte/webapp": "//localhost:3000/hr-forte-webapp.js",
+        "@hr-forte/webapp": "//localhost:3000/src/hr-forte-webapp.tsx",
         "@single-spa/welcome": "https://cdn.jsdelivr.net/npm/single-spa-welcome/dist/single-spa-welcome.min.js"
       }
     }
@@ -43,7 +43,23 @@
   <noscript>
     You need to enable JavaScript to run this app.
   </noscript>
-  <main></main>
+  <!-- 
+  Manually inject react-refresh for @hr-forte/webapp vite fast refresh to work. 
+  Since @hr-forte/webapp is a micro fe, it doesn't have control over the index.html file
+  More info:
+  https://vite.dev/guide/backend-integration.html#backend-integration
+  https://github.com/vitejs/vite/issues/1984#issuecomment-778289660
+  https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#middleware-mode
+  -->
+  <% if (isLocal) { %>
+  <script type="module">
+    import RefreshRuntime from 'http://localhost:3000/@react-refresh'
+    RefreshRuntime.injectIntoGlobalHook(window)
+    window.$RefreshReg$ = () => {}
+    window.$RefreshSig$ = () => (type) => type
+    window.__vite_plugin_react_preamble_installed__ = true
+  </script>
+  <% } %>
   <script>
     window.importMapInjector.initPromise.then(() => {
       import('@hr-forte/root-config');

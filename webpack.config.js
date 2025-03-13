@@ -10,9 +10,10 @@ module.exports = (webpackConfigEnv, argv) => {
     webpackConfigEnv,
     argv,
     disableHtmlGeneration: true,
+    outputSystemJS: false,
   });
 
-  return merge(defaultConfig, {
+  const mergedConfig = merge(defaultConfig, {
     // modify the webpack config however you'd like to by adding to this object
     plugins: [
       new HtmlWebpackPlugin({
@@ -25,4 +26,9 @@ module.exports = (webpackConfigEnv, argv) => {
       }),
     ],
   });
+
+  // eslint-disable-next-line no-console
+  console.dir(mergedConfig, { depth: null });
+
+  return mergedConfig;
 };

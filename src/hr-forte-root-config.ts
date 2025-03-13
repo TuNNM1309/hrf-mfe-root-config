@@ -6,11 +6,18 @@ const routes = constructRoutes(microfrontendLayout);
 const applications = constructApplications({
   routes,
   loadApp({ name }) {
+    // return System.import(name);
     return import(/* webpackIgnore: true */ name);
   },
 });
 const layoutEngine = constructLayoutEngine({ routes, applications });
 
 applications.forEach(registerApplication);
+
+// import('@hr-forte/legacy').then(() => {
+// System.import('@hr-forte/legacy').then(() => {
+//   layoutEngine.activate();
+//   start();
+// });
 layoutEngine.activate();
 start();

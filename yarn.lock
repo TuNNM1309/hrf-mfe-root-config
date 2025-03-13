@@ -1204,6 +1204,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/systemjs@^6.15.1":
+  version "6.15.1"
+  resolved "https://registry.npmjs.org/@types/systemjs/-/systemjs-6.15.1.tgz"
+  integrity sha512-MfDFIN+jRQOX1JRBrbbb72tsFJnK0n7mtLC+L2Y3t7As/vFxJiFGA/09FE+6ssFheHAibd8Q3gs959c+Sgf/9A==
+
 "@types/webpack-env@^1.18.8":
   version "1.18.8"
   resolved "https://registry.npmjs.org/@types/webpack-env/-/webpack-env-1.18.8.tgz"
@@ -2582,7 +2587,7 @@ fs-monkey@^1.0.4:
 
 fsevents@~2.3.2:
   version "2.3.3"
-  resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-2.3.3.tgz#cac6407785d03675a2a5e1a5305c697b347d90d6"
+  resolved "https://registry.npmjs.org/fsevents/-/fsevents-2.3.3.tgz"
   integrity sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==
 
 function-bind@^1.1.2:

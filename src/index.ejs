@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title><%= orgName %> Root Config</title>
+  <!-- Just for testing, obviously we need to sync this with the actual url from @hr-forte/legacy -->
+  <base href="http://localhost:8080">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https:; object-src 'none';">
- <!-- <meta name="importmap-type" content="systemjs-importmap" /> -->
+  <!-- <meta name="importmap-type" content="systemjs-importmap" /> -->
   <meta name="importmap-type" use-injector />
   <!-- If you wish to turn off import-map-overrides for specific environments (prod), uncomment the line below -->
   <!-- More info at https://github.com/single-spa/import-map-overrides/blob/main/docs/configuration.md#domain-list -->
@@ -32,8 +34,8 @@
     {
       "imports": {
         "@hr-forte/root-config": "//localhost:9000/hr-forte-root-config.js",
-        "@hr-forte/webapp": "//localhost:3000/src/hr-forte-webapp.tsx",
-        "@hr-forte/legacy": "//localhost:8080/app.js"
+        "@hr-forte/webapp": "//localhost:8081/src/hr-forte-webapp.tsx",
+        "@hr-forte/legacy": "//localhost:8080/hr-forte-legacy.js"
       }
     }
   </script>
@@ -58,7 +60,8 @@
   -->
   <% if (isLocal) { %>
   <script type="module">
-    import RefreshRuntime from 'http://localhost:3000/@react-refresh'
+    // keep in sync this with @hr-forte/webapp vite.config.ts
+    import RefreshRuntime from 'http://localhost:8081/@react-refresh'
     RefreshRuntime.injectIntoGlobalHook(window)
     window.$RefreshReg$ = () => {}
     window.$RefreshSig$ = () => (type) => type

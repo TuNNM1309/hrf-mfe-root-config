@@ -4,6 +4,11 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = (webpackConfigEnv, argv) => {
   const orgName = 'hr-forte';
+  // TODO: Might have to move this into .env file
+  const rootConfigPort = 9000;
+  const legacyPort = 8080;
+  const webappPort = 8081;
+
   const defaultConfig = singleSpaDefaults({
     orgName,
     projectName: 'root-config',
@@ -15,7 +20,13 @@ module.exports = (webpackConfigEnv, argv) => {
 
   const mergedConfig = merge(defaultConfig, {
     devServer: {
-      port: 9000,
+      port: rootConfigPort,
+      proxy: [
+        {
+          context: ['/assets'],
+          target: `http://localhost:${legacyPort}`,
+        },
+      ],
     },
     plugins: [
       new HtmlWebpackPlugin({
@@ -24,6 +35,9 @@ module.exports = (webpackConfigEnv, argv) => {
         templateParameters: {
           isLocal: webpackConfigEnv && webpackConfigEnv.isLocal,
           orgName,
+          legacyPort,
+          webappPort,
+          rootConfigPort,
         },
       }),
     ],

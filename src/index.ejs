@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title><%= orgName %> Root Config</title>
-  <!-- Just for testing, obviously we need to sync this with the actual url from @hr-forte/legacy -->
-  <base href="http://localhost:8080">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https:; object-src 'none';">
+  <!-- <title><%= orgName %> Root Config</title> -->
+  <title>HR Forte</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https: localhost:*; object-src 'none';">
+
   <!-- <meta name="importmap-type" content="systemjs-importmap" /> -->
   <meta name="importmap-type" use-injector />
   <!-- If you wish to turn off import-map-overrides for specific environments (prod), uncomment the line below -->
@@ -23,6 +23,50 @@
       }
     }
   </script>
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon-generator/apple-touch-icon.png" />
+  <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-generator/favicon-32x32.png" />
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="192x192"
+    href="/assets/images/favicon-generator/android-chrome-192x192.png"
+  />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon-generator/favicon-16x16.png" />
+  <link rel="manifest" href="/assets/site.webmanifest" />
+  <link rel="mask-icon" href="/assets/images/icon-svg/safari-pinned-tab.svg" color="#5bbad5" />
+  <meta name="msapplication-TileColor" content="#da532c" />
+  <meta name="msapplication-TileImage" content="/assets/images/favicon-generator/mstile-144x144.png" />
+  <meta name="theme-color" content="#ffffff" />
+
+  <link
+  href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600&amp;subset=cyrillic-ext,latin-ext"
+  rel="stylesheet"
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Carlito:ital,wght@0,400;0,700;1,400;1,700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet"
+  />
+
   <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@6.0.3/lib/es2015/esm/single-spa.min.js" as="module">
 
   <!-- Add your organization's prod import map URL to this script's src  -->
@@ -33,9 +77,9 @@
   <script type="injector-importmap">
     {
       "imports": {
-        "@hr-forte/root-config": "//localhost:9000/hr-forte-root-config.js",
-        "@hr-forte/webapp": "//localhost:8081/src/hr-forte-webapp.tsx",
-        "@hr-forte/legacy": "//localhost:8080/hr-forte-legacy.js"
+        "@hr-forte/root-config": "//localhost:<%= rootConfigPort %>/hr-forte-root-config.js",
+        "@hr-forte/webapp": "//localhost:<%= webappPort %>/src/hr-forte-webapp.tsx",
+        "@hr-forte/legacy": "//localhost:<%= legacyPort %>/hr-forte-legacy.js"
       }
     }
   </script>
@@ -61,7 +105,7 @@
   <% if (isLocal) { %>
   <script type="module">
     // keep in sync this with @hr-forte/webapp vite.config.ts
-    import RefreshRuntime from 'http://localhost:8081/@react-refresh'
+    import RefreshRuntime from `http://localhost:<%= webappPort %>/@react-refresh`
     RefreshRuntime.injectIntoGlobalHook(window)
     window.$RefreshReg$ = () => {}
     window.$RefreshSig$ = () => (type) => type

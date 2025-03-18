@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- <title><%= orgName %> Root Config</title> -->
   <title>HR Forte</title>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: localhost:*; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:*; connect-src https: localhost:* ws://localhost:*; style-src 'unsafe-inline' https: localhost:*; object-src 'none';">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: localhost:<%= rootConfigPort %> localhost:<%= webappPort %> localhost:<%= legacyPort %>; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:<%= rootConfigPort %> localhost:<%= webappPort %> localhost:<%= legacyPort %>; connect-src https: localhost:<%= rootConfigPort %> localhost:<%= webappPort %> localhost:<%= legacyPort %> ws://localhost:<%= rootConfigPort %> ws://localhost:<%= webappPort %> ws://localhost:<%= legacyPort %>; style-src 'unsafe-inline' https: localhost:<%= rootConfigPort %> localhost:<%= webappPort %> localhost:<%= legacyPort %>; img-src 'self' https: localhost:<%= rootConfigPort %> localhost:<%= webappPort %> localhost:<%= legacyPort %> data: blob:; object-src 'none';">
 
   <!-- <meta name="importmap-type" content="systemjs-importmap" /> -->
   <meta name="importmap-type" use-injector />

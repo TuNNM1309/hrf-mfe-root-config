@@ -19,11 +19,12 @@
   <script type="injector-importmap">
     {
       "imports": {
-        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@6.0.3/lib/es2015/esm/single-spa.min.js"
+        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@6.0.3/lib/es2015/esm/single-spa.min.js",
+        "react": "https://cdn.jsdelivr.net/npm/react@18.3.1/+esm",
+        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@18.3.1/+esm"
       }
     }
   </script>
-
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon-generator/apple-touch-icon.png" />
   <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-generator/favicon-32x32.png" />
@@ -105,7 +106,7 @@
   <% if (isLocal) { %>
   <script type="module">
     // keep in sync this with @hr-forte/webapp vite.config.ts
-    import RefreshRuntime from `http://localhost:<%= webappPort %>/@react-refresh`
+    import RefreshRuntime from 'http://localhost:<%= webappPort %>/@react-refresh'
     RefreshRuntime.injectIntoGlobalHook(window)
     window.$RefreshReg$ = () => {}
     window.$RefreshSig$ = () => (type) => type

@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = (webpackConfigEnv, argv) => {
   const orgName = 'hr-forte';
-  // TODO: Might have to move this into .env file
   const rootConfigPort = 9000;
   const legacyPort = 8080;
   const webappPort = 8081;
@@ -27,6 +26,21 @@ module.exports = (webpackConfigEnv, argv) => {
           target: `http://localhost:${legacyPort}`,
         },
       ],
+      client: {
+        overlay: {
+          runtimeErrors: (error) => {
+            // Some problems with webpack dev server and antd table, happens in @hr-forte/legacy
+            // it doesn't seem to break anything though
+            // https://stackoverflow.com/a/77914968
+            // https://stackoverflow.com/a/79371902
+            if (error?.message === 'ResizeObserver loop completed with undelivered notifications.') {
+              console.error(error);
+              return false;
+            }
+            return true;
+          },
+        },
+      },
     },
     plugins: [
       new HtmlWebpackPlugin({

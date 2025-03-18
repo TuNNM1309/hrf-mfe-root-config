@@ -14,7 +14,7 @@ module.exports = (webpackConfigEnv, argv) => {
     webpackConfigEnv,
     argv,
     disableHtmlGeneration: true,
-    outputSystemJS: false,
+    outputSystemJS: true,
   });
 
   const mergedConfig = merge(defaultConfig, {

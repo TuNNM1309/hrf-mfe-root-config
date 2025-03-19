@@ -1,8 +1,17 @@
 const { merge } = require('webpack-merge');
 const singleSpaDefaults = require('webpack-config-single-spa-ts');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const dotenv = require('dotenv');
+const dotenvWebpack = require('dotenv-webpack');
 
 module.exports = (webpackConfigEnv, argv) => {
+  const env = webpackConfigEnv.ENV || 'local';
+  const envPath = `./.env.${env}`;
+  dotenv.config({ path: envPath });
+
+  // eslint-disable-next-line no-console
+  console.log('Test env in buildtime:', process.env.TEST_ENV);
+
   const orgName = 'hr-forte';
   const rootConfigPort = 9000;
   const legacyPort = 8080;
@@ -47,12 +56,15 @@ module.exports = (webpackConfigEnv, argv) => {
         inject: false,
         template: 'src/index.ejs',
         templateParameters: {
-          isLocal: webpackConfigEnv && webpackConfigEnv.isLocal,
+          isLocal: env === 'local',
           orgName,
           legacyPort,
           webappPort,
           rootConfigPort,
         },
+      }),
+      new dotenvWebpack({
+        path: envPath,
       }),
     ],
   });

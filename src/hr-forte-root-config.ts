@@ -19,5 +19,6 @@ applications.forEach(registerApplication);
 //   layoutEngine.activate();
 //   start();
 // });
+console.info('Test env in runtime', process.env.TEST_ENV);
 layoutEngine.activate();
 start();

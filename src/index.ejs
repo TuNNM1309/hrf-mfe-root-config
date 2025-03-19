@@ -8,23 +8,6 @@
   <title>HR Forte</title>
   <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: localhost:<%= rootConfigPort %> localhost:<%= webappPort %> localhost:<%= legacyPort %>; script-src 'unsafe-inline' 'unsafe-eval' https: localhost:<%= rootConfigPort %> localhost:<%= webappPort %> localhost:<%= legacyPort %>; connect-src https: localhost:<%= rootConfigPort %> localhost:<%= webappPort %> localhost:<%= legacyPort %> ws://localhost:<%= rootConfigPort %> ws://localhost:<%= webappPort %> ws://localhost:<%= legacyPort %>; style-src 'unsafe-inline' https: localhost:<%= rootConfigPort %> localhost:<%= webappPort %> localhost:<%= legacyPort %>; img-src 'self' https: localhost:<%= rootConfigPort %> localhost:<%= webappPort %> localhost:<%= legacyPort %> data: blob:; object-src 'none';">
 
-  <!-- <meta name="importmap-type" use-injector /> -->
-  <meta name="importmap-type" content="systemjs-importmap" />
-  <!-- If you wish to turn off import-map-overrides for specific environments (prod), uncomment the line below -->
-  <!-- More info at https://github.com/single-spa/import-map-overrides/blob/main/docs/configuration.md#domain-list -->
-  <!-- <meta name="import-map-overrides-domains" content="denylist:prod.example.com" /> -->
-
-  <!-- Shared dependencies go into this import map -->
-  <!-- <script type="injector-importmap"> -->
-  <script type="systemjs-importmap">
-    {
-      "imports": {
-        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@6.0.3/lib/es2015/system/single-spa.min.js",
-        "react": "https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js",
-        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@18.3.1/index.min.js"
-      }
-    }
-  </script>
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon-generator/apple-touch-icon.png" />
   <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon-generator/favicon-32x32.png" />
@@ -68,14 +51,42 @@
     rel="stylesheet"
   />
 
-  <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@6.0.3/lib/es2015/system/single-spa.min.js">
+  <!-- <meta name="importmap-type" content="systemjs-importmap" /> -->
+  <meta name="importmap-type" use-injector />
+  <!-- If you wish to turn off import-map-overrides for specific environments (prod), uncomment the line below -->
+  <!-- More info at https://github.com/single-spa/import-map-overrides/blob/main/docs/configuration.md#domain-list -->
+  <!-- <meta name="import-map-overrides-domains" content="denylist:prod.example.com" /> -->
+
+  <!-- Shared dependencies go into this import map -->
+  <!-- <script type="systemjs-importmap">
+    {
+      "imports": {
+        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@6.0.3/lib/es2015/system/single-spa.min.js",
+        "react": "https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js",
+        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@18.3.1/index.min.js"
+      }
+    }
+  </script> -->
+  <script type="injector-importmap">
+    {
+      "imports": {
+        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@6.0.3/lib/es2015/esm/single-spa.min.js",
+        "react": "https://cdn.jsdelivr.net/npm/react@18.3.1/+esm",
+        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@18.3.1/+esm"
+      }
+    }
+  </script>
+
+
+  <!-- <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@6.0.3/lib/es2015/system/single-spa.min.js"> -->
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@6.0.3/lib/es2015/esm/single-spa.min.js" as="module">
 
   <!-- Add your organization's prod import map URL to this script's src  -->
   <!-- <script type="injector-importmap" src="/importmap.json"></script> -->
 
   <% if (isLocal) { %>
-  <!-- <script type="injector-importmap"> -->
-  <script type="systemjs-importmap">
+  <!-- <script type="systemjs-importmap"> -->
+  <script type="injector-importmap">
     {
       "imports": {
         "@hr-forte/root-config": "//localhost:<%= rootConfigPort %>/hr-forte-root-config.js",
@@ -85,12 +96,13 @@
     }
   </script>
   <% } %>
+
   <!-- <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@5.1.1/dist/import-map-overrides.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@single-spa/import-map-injector@2.0.1/lib/import-map-injector.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.15.1/dist/system.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.15.1/dist/extras/amd.min.js"></script> -->
 
   <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@5.1.1/dist/import-map-overrides.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.15.1/dist/system.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.15.1/dist/extras/amd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@single-spa/import-map-injector@2.0.1/lib/import-map-injector.js"></script>
 </head>
 <body>
   <noscript>
@@ -115,10 +127,10 @@
   </script>
   <% } %>
   <script>
-    System.import('@hr-forte/root-config');
-    // window.importMapInjector.initPromise.then(() => {
-    //   import('@hr-forte/root-config');
-    // });
+    // System.import('@hr-forte/root-config');
+    window.importMapInjector.initPromise.then(() => {
+      import('@hr-forte/root-config');
+    });
   </script>
   <import-map-overrides-full show-when-local-storage="devtools" dev-libs></import-map-overrides-full>
 </body>
